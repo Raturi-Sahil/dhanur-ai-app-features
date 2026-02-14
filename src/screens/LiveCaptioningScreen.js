@@ -40,7 +40,7 @@ export default function LiveCaptioningScreen() {
   // Handle speech recognition results
   useSpeechRecognitionEventSafe('result', (event) => {
     const transcript = event.results[0]?.transcript || '';
-    
+
     if (event.isFinal) {
       // Add final result to captions
       if (transcript.trim()) {
@@ -74,7 +74,7 @@ export default function LiveCaptioningScreen() {
     try {
       const result = await SpeechRecognitionModule.getPermissionsAsync();
       setHasPermission(result.granted);
-      
+
       if (!result.granted && result.canAskAgain) {
         const requestResult = await SpeechRecognitionModule.requestPermissionsAsync();
         setHasPermission(requestResult.granted);
@@ -105,7 +105,7 @@ export default function LiveCaptioningScreen() {
 
     try {
       setError(null);
-      
+
       // Start speech recognition
       SpeechRecognitionModule.start({
         lang: 'en-US',
@@ -142,7 +142,7 @@ export default function LiveCaptioningScreen() {
   };
 
   // Combine captions with current interim transcript
-  const displayCaptions = currentTranscript 
+  const displayCaptions = currentTranscript
     ? [...captions, currentTranscript]
     : captions;
 
@@ -167,9 +167,9 @@ export default function LiveCaptioningScreen() {
 
         {/* Caption Display */}
         <View style={styles.captionContainer}>
-          <CaptionDisplay 
-            captions={displayCaptions} 
-            isListening={isListening} 
+          <CaptionDisplay
+            captions={displayCaptions}
+            isListening={isListening}
           />
         </View>
 
@@ -208,7 +208,7 @@ export default function LiveCaptioningScreen() {
           <Text style={styles.statusText}>
             {!isSpeechRecognitionAvailable
               ? 'Live captioning unavailable in Expo Go'
-              : isListening 
+              : isListening
               ? 'Listening... speak now'
               : 'Tap microphone to start'
             }

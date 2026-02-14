@@ -4,8 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import LiveCaptioningScreen from '../screens/LiveCaptioningScreen';
-import MicControlScreen from '../screens/MicControlScreen';
-import OverlayPlayerScreen from '../screens/OverlayPlayerScreen';
+import TeleprompterScreen from '../screens/TeleprompterScreen';
 import { COLORS } from '../styles/theme';
 
 const Tab = createBottomTabNavigator();
@@ -24,35 +23,26 @@ export default function TabNavigator() {
 
           if (route.name === 'Captioning') {
             iconName = focused ? 'mic' : 'mic-outline';
-          } else if (route.name === 'Microphone') {
-            iconName = focused ? 'radio' : 'radio-outline';
-          } else if (route.name === 'Player') {
-            iconName = focused ? 'play-circle' : 'play-circle-outline';
+          } else if (route.name === 'Teleprompter') {
+            iconName = focused ? 'videocam' : 'videocam-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
     >
-      <Tab.Screen 
-        name="Captioning" 
+      <Tab.Screen
+        name="Captioning"
         component={LiveCaptioningScreen}
         options={{
           tabBarLabel: 'Live Caption',
         }}
       />
-      <Tab.Screen 
-        name="Microphone" 
-        component={MicControlScreen}
+      <Tab.Screen
+        name="Teleprompter"
+        component={TeleprompterScreen}
         options={{
-          tabBarLabel: 'Mic Control',
-        }}
-      />
-      <Tab.Screen 
-        name="Player" 
-        component={OverlayPlayerScreen}
-        options={{
-          tabBarLabel: 'Player',
+          tabBarLabel: 'Teleprompter',
         }}
       />
     </Tab.Navigator>

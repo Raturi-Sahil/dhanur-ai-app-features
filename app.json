@@ -50,8 +50,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "87dcf1e3-01af-42bc-a59f-582a18b31cb7"
+        "projectId": "f74ebb14-8865-4d14-b3a8-ee3c687698ac"
       }
-    }
+    },
+    "owner": "amitmamgai2k"
   }
 }
