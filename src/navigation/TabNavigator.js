@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import LiveCaptioningScreen from '../screens/LiveCaptioningScreen';
-import TeleprompterScreen from '../screens/TeleprompterScreen';
+import VoiceRecorderScreen from '../screens/VoiceRecorderScreen';
 import { COLORS } from '../styles/theme';
 
 const Tab = createBottomTabNavigator();
@@ -22,9 +22,9 @@ export default function TabNavigator() {
           let iconName;
 
           if (route.name === 'Captioning') {
+            iconName = focused ? 'chatbubble' : 'chatbubble-outline';
+          } else if (route.name === 'Recorder') {
             iconName = focused ? 'mic' : 'mic-outline';
-          } else if (route.name === 'Teleprompter') {
-            iconName = focused ? 'videocam' : 'videocam-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -39,10 +39,10 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Teleprompter"
-        component={TeleprompterScreen}
+        name="Recorder"
+        component={VoiceRecorderScreen}
         options={{
-          tabBarLabel: 'Teleprompter',
+          tabBarLabel: 'Voice Recorder',
         }}
       />
     </Tab.Navigator>
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: COLORS.surface,
     borderTopWidth: 0,
-    paddingTop: 8,
-    paddingBottom: 8,
-    height: 70,
+    paddingTop: 10,
+    paddingBottom: Platform.OS === 'android' ? 48 : 8,
+    height: Platform.OS === 'android' ? 104 : 70,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -4 },
